@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option csharp_namespace = "EventSourcingPattern.QueryEventsApi.Protos";
+
+import "google/protobuf/empty.proto";
+
+service OrderProtoService {
+	rpc OrderCreated(OrderCreatedModel) returns(google.protobuf.Empty);
+}
+
+message OrderCreatedModel{
+	string id = 1;
+    repeated OrderItemModel orderItems = 2;
+
+}
+message OrderItemModel{
+    string id = 1;
+    string productId = 2;
+    int32 quantity = 3;
+}

@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option csharp_namespace = "EventSourcingPattern.CommandEventsApi.Protos";
+
+import "google/protobuf/empty.proto";
+
+service ProductProtoService {
+	rpc ProductCreated(ProductCreatedModel) returns(google.protobuf.Empty);
+	rpc ProductNameUpdated(ProductNameUpdatedModel) returns(google.protobuf.Empty);
+	rpc ProductPriceUpdated(ProductPriceUpdatedModel) returns(google.protobuf.Empty);
+}
+
+message ProductCreatedModel{
+	string name = 1;
+	DecimalValue price = 2;
+	int32 stock = 3; 
+}
+
+message ProductNameUpdatedModel{
+	string id = 1;
+	string name = 2;
+}
+
+message ProductPriceUpdatedModel{
+	string id = 1;
+	DecimalValue price = 2;
+}
+
+message DecimalValue {
+    int64 value = 1; // Tam sayý kýsmý
+    int32 scale = 2; // Kesir kýsmý
+}
